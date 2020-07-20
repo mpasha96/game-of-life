@@ -3,22 +3,38 @@ class GameOfLife {
 
     companion object {
 
-        fun applyRule(grid: Grid): Grid {
+        fun applyRules(grid: Grid): Grid {
 
             grid.grid.forEachIndexed { rowIndex, rowItem ->
                 rowItem.forEachIndexed { colIndex, _ ->
                     run {
-                        applyUnderPopulationRule(grid, rowIndex, colIndex)
+                        killCellIfUnderPopulation(grid, rowIndex, colIndex)
+                        killCellIfOverPopulation(grid, rowIndex, colIndex)
+                        reproduceCellIfExactlyThreeLiveNeighbours(grid, rowIndex, colIndex)
                     }
                 }
             }
             return grid
         }
 
-        private fun applyUnderPopulationRule(grid: Grid, rowIndex: Int, colIndex: Int) {
+        private fun killCellIfUnderPopulation(grid: Grid, rowIndex: Int, colIndex: Int) {
             val liveCells = grid.getLiveCells(rowIndex, colIndex)
             if (liveCells < 2 && grid.grid[rowIndex][colIndex] == 1) {
                 grid.grid[rowIndex][colIndex] = 0
+            }
+        }
+
+        private fun killCellIfOverPopulation(grid: Grid, rowIndex: Int, colIndex: Int) {
+            val liveCells = grid.getLiveCells(rowIndex, colIndex)
+            if (liveCells > 3 && grid.grid[rowIndex][colIndex] == 1) {
+                grid.grid[rowIndex][colIndex] = 0
+            }
+        }
+
+        private fun reproduceCellIfExactlyThreeLiveNeighbours(grid: Grid, rowIndex: Int, colIndex: Int) {
+            val liveCells = grid.getLiveCells(rowIndex, colIndex)
+            if (liveCells == 3 && grid.grid[rowIndex][colIndex] == 0) {
+                grid.grid[rowIndex][colIndex] = 1
             }
         }
 

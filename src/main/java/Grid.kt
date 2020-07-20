@@ -2,9 +2,9 @@ class Grid {
 
 
     val grid = arrayOf(
-            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 1, 1, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 1, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
+            intArrayOf(0, 0, 0, 1, 1, 0, 1, 1, 0, 0),
+            intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
             intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
             intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
             intArrayOf(0, 0, 0, 1, 1, 0, 0, 0, 0, 0),
