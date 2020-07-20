@@ -9,7 +9,6 @@ class GameOfLifeTest {
 
     var grid = Grid()
 
-
     @Test
     fun `Any live cell with fewer than two live neighbors dies, as if caused by under population`() {
 
@@ -18,10 +17,10 @@ class GameOfLifeTest {
         var expected = arrayOf(
                 intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
                 intArrayOf(0, 0, 0, 1, 1, 0, 0, 1, 0, 0),
+                intArrayOf(0, 0, 0, 1, 1, 1, 1, 1, 0, 0),
                 intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
-                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-                intArrayOf(0, 0, 0, 1, 1, 0, 0, 0, 0, 0),
+                intArrayOf(0, 0, 0, 1, 0, 1, 1, 1, 0, 0),
+                intArrayOf(0, 0, 0, 1, 1, 1, 0, 0, 0, 0),
                 intArrayOf(0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
                 intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
                 intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -39,10 +38,10 @@ class GameOfLifeTest {
         var expected = arrayOf(
                 intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
                 intArrayOf(0, 0, 0, 1, 1, 0, 0, 1, 0, 0),
+                intArrayOf(0, 0, 0, 1, 1, 1, 1, 1, 0, 0),
                 intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
-                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-                intArrayOf(0, 0, 0, 1, 1, 0, 0, 0, 0, 0),
+                intArrayOf(0, 0, 0, 1, 0, 1, 1, 1, 0, 0),
+                intArrayOf(0, 0, 0, 1, 1, 1, 0, 0, 0, 0),
                 intArrayOf(0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
                 intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
                 intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -59,10 +58,10 @@ class GameOfLifeTest {
         var expected = arrayOf(
                 intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
                 intArrayOf(0, 0, 0, 1, 1, 0, 0, 1, 0, 0),
+                intArrayOf(0, 0, 0, 1, 1, 1, 1, 1, 0, 0),
                 intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
-                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-                intArrayOf(0, 0, 0, 1, 1, 0, 0, 0, 0, 0),
+                intArrayOf(0, 0, 0, 1, 0, 1, 1, 1, 0, 0),
+                intArrayOf(0, 0, 0, 1, 1, 1, 0, 0, 0, 0),
                 intArrayOf(0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
                 intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
                 intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -78,11 +77,11 @@ class GameOfLifeTest {
         var expected = arrayOf(
                 intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
                 intArrayOf(0, 0, 0, 1, 1, 0, 0, 1, 0, 0),
-                intArrayOf(0, 0, 0, 1, 1, 0, 1, 1, 0, 0),
-                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-                intArrayOf(0, 0, 1, 1, 1, 0, 0, 0, 0, 0),
-                intArrayOf(0, 0, 1, 1, 1, 0, 0, 0, 0, 0),
+                intArrayOf(0, 0, 0, 1, 1, 1, 1, 1, 0, 0),
+                intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
+                intArrayOf(0, 0, 0, 1, 0, 1, 1, 1, 0, 0),
+                intArrayOf(0, 0, 0, 1, 1, 1, 0, 0, 0, 0),
+                intArrayOf(0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
                 intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
                 intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
                 intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
