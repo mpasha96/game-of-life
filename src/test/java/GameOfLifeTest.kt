@@ -2,7 +2,6 @@ import GameOfLife.Companion.applyRule
 import org.junit.Test
 import org.junit.internal.runners.JUnit4ClassRunner
 import org.junit.runner.RunWith
-import kotlin.test.assertEquals
 
 
 @RunWith(JUnit4ClassRunner::class)
@@ -42,19 +41,6 @@ class GameOfLifeTest {
 
     }
 
-    @Test
-    fun `test get neighbours`() {
-        val gameOfLife = GameOfLife()
-
-        val actual = gameOfLife.getNeighbours(grid, 9, 0)
-
-
-        assert(actual.isNotEmpty())
-
-        assertEquals(listOf(0, 0, 0), actual)
-
-
-    }
 
     private fun equals(expected: Array<IntArray>, actual: Array<IntArray>) {
         expected.forEachIndexed { rowIndex, rowItem ->
