@@ -3,21 +3,23 @@ class GameOfLife {
 
     companion object {
 
-        fun applyRule(grid: Array<IntArray>): Array<IntArray> {
+        fun applyRule(grid: Grid): Grid {
 
-            grid.forEachIndexed { rowIndex, rowItem ->
-                rowItem.forEachIndexed { colIndex, colItem ->
-                    {
+            grid.grid.forEachIndexed { rowIndex, rowItem ->
+                rowItem.forEachIndexed { colIndex, _ ->
+                    run {
                         applyUnderPopulationRule(grid, rowIndex, colIndex)
                     }
                 }
             }
-
             return grid
         }
 
-        private fun applyUnderPopulationRule(grid: Array<IntArray>, rowIndex: Int, colIndex: Int) {
-
+        private fun applyUnderPopulationRule(grid: Grid, rowIndex: Int, colIndex: Int) {
+            val liveCells = grid.getLiveCells(rowIndex, colIndex)
+            if (liveCells < 2 && grid.grid[rowIndex][colIndex] == 1) {
+                grid.grid[rowIndex][colIndex] = 0
+            }
         }
 
     }

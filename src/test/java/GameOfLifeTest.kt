@@ -7,17 +7,7 @@ import org.junit.runner.RunWith
 @RunWith(JUnit4ClassRunner::class)
 class GameOfLifeTest {
 
-    var grid = arrayOf(
-            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 1, 1, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 1, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 1, 1, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 0, 1, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 1, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+    var grid = Grid()
 
 
     @Test
@@ -37,7 +27,7 @@ class GameOfLifeTest {
                 intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
                 intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
 
-        equals(expected, gameOfLife)
+        equals(expected, gameOfLife.grid)
 
     }
 

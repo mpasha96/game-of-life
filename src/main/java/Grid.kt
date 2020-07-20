@@ -52,4 +52,8 @@ class Grid {
         return list
 
     }
+
+    fun getLiveCells(row: Int, col: Int): Int {
+        return getNeighbours(row, col).sum()
+    }
 }

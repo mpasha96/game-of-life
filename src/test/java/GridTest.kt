@@ -18,7 +18,6 @@ class GridTest {
 
         assertEquals(listOf(0, 0, 0), actual)
 
-
     }
 
     @Test
@@ -26,11 +25,9 @@ class GridTest {
 
         val actual = grid.getNeighbours(9, 0)
 
-
         assert(actual.isNotEmpty())
 
         assertEquals(listOf(0, 0, 0), actual)
-
 
     }
 
@@ -43,7 +40,6 @@ class GridTest {
 
         assertEquals(listOf(0, 0, 0), actual)
 
-
     }
 
     @Test
@@ -51,11 +47,28 @@ class GridTest {
 
         val actual = grid.getNeighbours(0, 0)
 
-
         assert(actual.isNotEmpty())
 
         assertEquals(listOf(0, 0, 0), actual)
 
+    }
+
+
+    @Test
+    fun `test get live cells are zero`() {
+
+        val actual = grid.getLiveCells(0, 0)
+
+        assert(actual == 0)
+
+    }
+
+    @Test
+    fun `test get live cells are two`() {
+
+        val actual = grid.getLiveCells(5, 4)
+
+        assert(actual == 2)
 
     }
 }
