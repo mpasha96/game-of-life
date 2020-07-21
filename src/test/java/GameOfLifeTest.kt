@@ -1,9 +1,7 @@
-
 import org.junit.Before
 import org.junit.Test
 import org.junit.internal.runners.JUnit4ClassRunner
 import org.junit.runner.RunWith
-
 
 @RunWith(JUnit4ClassRunner::class)
 class GameOfLifeTest {
@@ -24,18 +22,16 @@ class GameOfLifeTest {
     private lateinit var gameOfLife: GameOfLife
 
     @Before
-    fun setUp(){
+    fun setUp() {
         grid = Grid(array)
         gameOfLife = GameOfLife()
     }
 
-
     @Test
     fun `Any live cell with fewer than two live neighbors dies, as if caused by under population`() {
-
         val gameOfLife = gameOfLife.killCellIfUnderPopulation(grid)
 
-        var expected = arrayOf(
+        val expected = arrayOf(
                 intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
                 intArrayOf(0, 0, 0, 1, 1, 0, 1, 1, 0, 0),
                 intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
@@ -52,11 +48,10 @@ class GameOfLifeTest {
     }
 
     @Test
-    fun `Any live cell with two or three live neighbors lives on to the next generation`(){
+    fun `Any live cell with two or three live neighbors lives on to the next generation`() {
+        val gameOfLife = gameOfLife.keepCellAliveIfTwoOrThreeLiveNeighboursPresent(grid)
 
-        val gameOfLife = keepCellAliveIfTwoOrThreeLiveNeighboursPresent(grid)
-
-        var expected = arrayOf(
+        val expected = arrayOf(
                 intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
                 intArrayOf(0, 0, 0, 1, 1, 0, 1, 1, 0, 0),
                 intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
@@ -73,10 +68,10 @@ class GameOfLifeTest {
     }
 
     @Test
-    fun `Any live cell with more than three live neighbors dies, as if by overpopulation`(){
-        val gameOfLife = killCellIfOverPopulation(grid)
+    fun `Any live cell with more than three live neighbors dies, as if by overpopulation`() {
+        val gameOfLife = gameOfLife.killCellIfOverPopulation(grid)
 
-        var expected = arrayOf(
+        val expected = arrayOf(
                 intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
                 intArrayOf(0, 0, 0, 1, 1, 0, 0, 1, 0, 0),
                 intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
@@ -92,10 +87,10 @@ class GameOfLifeTest {
     }
 
     @Test
-    fun `Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction`(){
-        val gameOfLife = reproduceCellIfExactlyThreeLiveNeighbours(grid)
+    fun `Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction`() {
+        val gameOfLife = gameOfLife.reproduceCellIfExactlyThreeLiveNeighbours(grid)
 
-        var expected = arrayOf(
+        val expected = arrayOf(
                 intArrayOf(0, 0, 0, 0, 0, 1, 1, 1, 0, 0),
                 intArrayOf(0, 0, 0, 1, 1, 0, 1, 1, 1, 0),
                 intArrayOf(0, 0, 0, 1, 1, 0, 1, 1, 1, 0),
@@ -111,20 +106,20 @@ class GameOfLifeTest {
     }
 
     @Test
-    fun `Apply all rules`(){
-        val gameOfLife = applyRules(grid)
+    fun `Apply all rules`() {
+        val gameOfLife = gameOfLife.applyRules(grid)
 
-            var expected = arrayOf(
-            intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
-            intArrayOf(0, 0, 0, 1, 1, 0, 0, 1, 0, 0),
-            intArrayOf(0, 0, 0, 1, 1, 1, 1, 1, 0, 0),
-            intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
-            intArrayOf(0, 0, 0, 1, 0, 1, 1, 1, 0, 0),
-            intArrayOf(0, 0, 0, 1, 1, 1, 0, 0, 0, 0),
-            intArrayOf(0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+        val expected = arrayOf(
+                intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
+                intArrayOf(0, 0, 0, 1, 1, 0, 0, 1, 0, 0),
+                intArrayOf(0, 0, 0, 1, 1, 1, 1, 1, 0, 0),
+                intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
+                intArrayOf(0, 0, 0, 1, 0, 1, 1, 1, 0, 0),
+                intArrayOf(0, 0, 0, 1, 1, 1, 0, 0, 0, 0),
+                intArrayOf(0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
+                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
 
         equals(expected, gameOfLife.grid)
     }
