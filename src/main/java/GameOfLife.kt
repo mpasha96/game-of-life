@@ -1,3 +1,8 @@
+private const val MAX_POPULATION_LIMIT = 3
+private const val MIN_POPULATION_LIMIT = 2
+private const val ALIVE = 1
+private const val DEAD = 0
+
 class GameOfLife {
 
     companion object {
@@ -16,9 +21,8 @@ class GameOfLife {
             grid.grid.forEachIndexed { rowIndex, rowItem ->
                 rowItem.forEachIndexed { colIndex, _ ->
                     run {
-                        val liveCells = grid.getLiveCells(rowIndex, colIndex)
-                        if (liveCells < 2 && grid.grid[rowIndex][colIndex] == 1) {
-                            grid.grid[rowIndex][colIndex] = 0
+                        if (isUnderPopulated(grid, rowIndex, colIndex) && isCellAlive(grid, rowIndex, colIndex)) {
+                            killCell(grid, rowIndex, colIndex)
                         }
                     }
                 }
@@ -27,17 +31,15 @@ class GameOfLife {
         }
 
         fun keepCellAliveIfTwoOrThreeLiveNeighboursPresent(grid: Grid): Grid {
-            // as if we dont need to change anything here
-            return grid
+            return grid // as if we dont need to change anything here
         }
 
         fun killCellIfOverPopulation(grid: Grid): Grid {
             grid.grid.forEachIndexed { rowIndex, rowItem ->
                 rowItem.forEachIndexed { colIndex, _ ->
                     run {
-                        val liveCells = grid.getLiveCells(rowIndex, colIndex)
-                        if (liveCells > 3 && grid.grid[rowIndex][colIndex] == 1) {
-                            grid.grid[rowIndex][colIndex] = 0
+                        if (isOverPopulated(grid, rowIndex, colIndex) && isCellAlive(grid, rowIndex, colIndex)) {
+                            killCell(grid, rowIndex, colIndex)
                         }
                     }
                 }
@@ -45,19 +47,36 @@ class GameOfLife {
             return grid
         }
 
+
         fun reproduceCellIfExactlyThreeLiveNeighbours(grid: Grid): Grid {
             grid.grid.forEachIndexed { rowIndex, rowItem ->
                 rowItem.forEachIndexed { colIndex, _ ->
                     run {
-                        val liveCells = grid.getLiveCells(rowIndex, colIndex)
-                        if (liveCells == 3 && grid.grid[rowIndex][colIndex] == 0) {
-                            grid.grid[rowIndex][colIndex] = 1
+                        if (hasThreeLiveNeighbours(grid, rowIndex, colIndex) && !isCellAlive(grid, rowIndex, colIndex)) {
+                            reproduceCell(grid, rowIndex, colIndex)
                         }
                     }
                 }
             }
             return grid
         }
+
+        private fun hasThreeLiveNeighbours(grid: Grid, rowIndex: Int, colIndex: Int) = grid.getLiveCells(rowIndex, colIndex) == 3
+
+        private fun isOverPopulated(grid: Grid, rowIndex: Int, colIndex: Int) = grid.getLiveCells(rowIndex, colIndex) > MAX_POPULATION_LIMIT
+
+        private fun isUnderPopulated(grid: Grid, rowIndex: Int, colIndex: Int) = grid.getLiveCells(rowIndex, colIndex) < MIN_POPULATION_LIMIT
+
+        private fun isCellAlive(grid: Grid, rowIndex: Int, colIndex: Int) = grid.grid[rowIndex][colIndex] == ALIVE
+
+        private fun reproduceCell(grid: Grid, rowIndex: Int, colIndex: Int) {
+            grid.grid[rowIndex][colIndex] = ALIVE
+        }
+
+        private fun killCell(grid: Grid, rowIndex: Int, colIndex: Int) {
+            grid.grid[rowIndex][colIndex] = DEAD
+        }
+
 
     }
 
