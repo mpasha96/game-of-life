@@ -1,16 +1,4 @@
-class Grid {
-
-    val grid = arrayOf(
-            intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
-            intArrayOf(0, 0, 0, 1, 1, 0, 1, 1, 0, 0),
-            intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
-            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 1, 1, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 0, 1, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 1, 0, 0, 0, 0, 0),
-            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+class Grid(val grid: Array<IntArray>) {
 
     fun getNeighbours(row: Int, col: Int): List<Int> {
 

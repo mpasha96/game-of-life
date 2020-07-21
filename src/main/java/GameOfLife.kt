@@ -5,13 +5,14 @@ class GameOfLife {
         fun applyRules(grid: Grid): Grid {
 
             killCellIfUnderPopulation(grid)
+            keepCellAliveIfTwoOrThreeLiveNeighboursPresent(grid)
             killCellIfOverPopulation(grid)
             reproduceCellIfExactlyThreeLiveNeighbours(grid)
 
             return grid
         }
 
-        private fun killCellIfUnderPopulation(grid: Grid) {
+        fun killCellIfUnderPopulation(grid: Grid): Grid {
             grid.grid.forEachIndexed { rowIndex, rowItem ->
                 rowItem.forEachIndexed { colIndex, _ ->
                     run {
@@ -22,9 +23,15 @@ class GameOfLife {
                     }
                 }
             }
+            return grid
         }
 
-        private fun killCellIfOverPopulation(grid: Grid) {
+        fun keepCellAliveIfTwoOrThreeLiveNeighboursPresent(grid: Grid): Grid {
+            // as if we dont need to change anything here
+            return grid
+        }
+
+        fun killCellIfOverPopulation(grid: Grid): Grid {
             grid.grid.forEachIndexed { rowIndex, rowItem ->
                 rowItem.forEachIndexed { colIndex, _ ->
                     run {
@@ -35,9 +42,10 @@ class GameOfLife {
                     }
                 }
             }
+            return grid
         }
 
-        private fun reproduceCellIfExactlyThreeLiveNeighbours(grid: Grid) {
+        fun reproduceCellIfExactlyThreeLiveNeighbours(grid: Grid): Grid {
             grid.grid.forEachIndexed { rowIndex, rowItem ->
                 rowItem.forEachIndexed { colIndex, _ ->
                     run {
@@ -48,6 +56,7 @@ class GameOfLife {
                     }
                 }
             }
+            return grid
         }
 
     }

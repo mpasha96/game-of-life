@@ -6,7 +6,19 @@ import org.junit.runner.RunWith
 @RunWith(JUnit4ClassRunner::class)
 class GridTest {
 
-    var grid = Grid()
+    private val array = arrayOf(
+            intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),
+            intArrayOf(0, 0, 0, 1, 1, 0, 1, 1, 0, 0),
+            intArrayOf(0, 0, 0, 0, 1, 0, 1, 1, 0, 0),
+            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 1, 1, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0, 0, 1, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0, 1, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+
+    private var grid = Grid(array)
 
 
     @Test
