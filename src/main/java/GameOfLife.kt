@@ -8,7 +8,6 @@ class GameOfLife {
     companion object {
 
         fun applyRules(grid: Grid): Grid {
-
             killCellIfUnderPopulation(grid)
             keepCellAliveIfTwoOrThreeLiveNeighboursPresent(grid)
             killCellIfOverPopulation(grid)
@@ -18,13 +17,9 @@ class GameOfLife {
         }
 
         fun killCellIfUnderPopulation(grid: Grid): Grid {
-            grid.grid.forEachIndexed { rowIndex, rowItem ->
-                rowItem.forEachIndexed { colIndex, _ ->
-                    run {
-                        if (isUnderPopulated(grid, rowIndex, colIndex) && isCellAlive(grid, rowIndex, colIndex)) {
-                            killCell(grid, rowIndex, colIndex)
-                        }
-                    }
+            iterateGrid(grid) { rowIndex, colIndex ->
+                if (isCellAlive(grid, rowIndex, colIndex) && isUnderPopulated(grid, rowIndex, colIndex)) {
+                    killCell(grid, rowIndex, colIndex)
                 }
             }
             return grid
@@ -35,35 +30,24 @@ class GameOfLife {
         }
 
         fun killCellIfOverPopulation(grid: Grid): Grid {
-            grid.grid.forEachIndexed { rowIndex, rowItem ->
-                rowItem.forEachIndexed { colIndex, _ ->
-                    run {
-                        if (isOverPopulated(grid, rowIndex, colIndex) && isCellAlive(grid, rowIndex, colIndex)) {
-                            killCell(grid, rowIndex, colIndex)
-                        }
-                    }
+            iterateGrid(grid) { rowIndex, colIndex ->
+                if (isCellAlive(grid, rowIndex, colIndex) && isOverPopulated(grid, rowIndex, colIndex)) {
+                    killCell(grid, rowIndex, colIndex)
                 }
             }
             return grid
         }
-
 
         fun reproduceCellIfExactlyThreeLiveNeighbours(grid: Grid): Grid {
-            grid.grid.forEachIndexed { rowIndex, rowItem ->
-                rowItem.forEachIndexed { colIndex, _ ->
-                    run {
-                        if (hasThreeLiveNeighbours(grid, rowIndex, colIndex) && !isCellAlive(grid, rowIndex, colIndex)) {
-                            reproduceCell(grid, rowIndex, colIndex)
-                        }
-                    }
+            iterateGrid(grid) { rowIndex, colIndex ->
+                if (isCellDead(grid, rowIndex, colIndex) && hasThreeLiveNeighbours(grid, rowIndex, colIndex) ) {
+                    reproduceCell(grid, rowIndex, colIndex)
                 }
             }
             return grid
         }
 
-//        fun reproduceCellIfExactlyThreeLiveNeighboursWithCallback(grid: Grid): Grid {
-//
-//        }
+        private fun isCellDead(grid: Grid, rowIndex: Int, colIndex: Int) = grid.grid[rowIndex][colIndex] == DEAD
 
         private fun hasThreeLiveNeighbours(grid: Grid, rowIndex: Int, colIndex: Int) = grid.getLiveCells(rowIndex, colIndex) == 3
 
@@ -81,7 +65,7 @@ class GameOfLife {
             grid.grid[rowIndex][colIndex] = DEAD
         }
 
-        private fun iterateGrid(grid: Grid, callback: (row: Int, col: Int) -> Unit) {
+        private fun iterateGrid(grid: Grid, callback: (rowIndex: Int, colIndex: Int) -> Unit) {
             grid.grid.forEachIndexed { rowIndex, rowItem ->
                 rowItem.forEachIndexed { colIndex, _ ->
                     callback.invoke(rowIndex, colIndex)
