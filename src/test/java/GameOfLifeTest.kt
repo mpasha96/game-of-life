@@ -1,9 +1,5 @@
 
-import GameOfLife.Companion.applyRules
-import GameOfLife.Companion.keepCellAliveIfTwoOrThreeLiveNeighboursPresent
-import GameOfLife.Companion.killCellIfOverPopulation
-import GameOfLife.Companion.killCellIfUnderPopulation
-import GameOfLife.Companion.reproduceCellIfExactlyThreeLiveNeighbours
+import org.junit.Before
 import org.junit.Test
 import org.junit.internal.runners.JUnit4ClassRunner
 import org.junit.runner.RunWith
@@ -24,12 +20,20 @@ class GameOfLifeTest {
             intArrayOf(0, 0, 0, 0, 1, 0, 0, 0, 0, 0),
             intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
 
-    private var grid = Grid(array)
+    private lateinit var grid: Grid
+    private lateinit var gameOfLife: GameOfLife
+
+    @Before
+    fun setUp(){
+        grid = Grid(array)
+        gameOfLife = GameOfLife()
+    }
+
 
     @Test
     fun `Any live cell with fewer than two live neighbors dies, as if caused by under population`() {
 
-        val gameOfLife = killCellIfUnderPopulation(grid)
+        val gameOfLife = gameOfLife.killCellIfUnderPopulation(grid)
 
         var expected = arrayOf(
                 intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0),

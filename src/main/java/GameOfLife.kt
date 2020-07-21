@@ -5,8 +5,6 @@ private const val DEAD = 0
 
 class GameOfLife {
 
-    companion object {
-
         fun applyRules(grid: Grid): Grid {
             killCellIfUnderPopulation(grid)
             keepCellAliveIfTwoOrThreeLiveNeighboursPresent(grid)
@@ -72,8 +70,4 @@ class GameOfLife {
                 }
             }
         }
-
-    }
-
-
 }
