@@ -61,6 +61,10 @@ class GameOfLife {
             return grid
         }
 
+//        fun reproduceCellIfExactlyThreeLiveNeighboursWithCallback(grid: Grid): Grid {
+//
+//        }
+
         private fun hasThreeLiveNeighbours(grid: Grid, rowIndex: Int, colIndex: Int) = grid.getLiveCells(rowIndex, colIndex) == 3
 
         private fun isOverPopulated(grid: Grid, rowIndex: Int, colIndex: Int) = grid.getLiveCells(rowIndex, colIndex) > MAX_POPULATION_LIMIT
@@ -77,6 +81,13 @@ class GameOfLife {
             grid.grid[rowIndex][colIndex] = DEAD
         }
 
+        private fun iterateGrid(grid: Grid, callback: (row: Int, col: Int) -> Unit) {
+            grid.grid.forEachIndexed { rowIndex, rowItem ->
+                rowItem.forEachIndexed { colIndex, _ ->
+                    callback.invoke(rowIndex, colIndex)
+                }
+            }
+        }
 
     }
 
